@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Events</title>
+</head>
+<body>
+    <h1>Sport Events</h1>
+    <button><a href="{% url 'sports:create' %}">Create Event</a></button>
+    <button><a href="{% url 'home' %}">Back to home</a></button>
+    {% for event in sports %}
+        <a href="{{ event.get_detail_url }}"><h3>{{ event.name }}</h3></a>
+    {% empty %}
+        <h3>No Events</h3>
+    {% endfor %}
+</body>
+</html>

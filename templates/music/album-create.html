@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% if music %}Update Album {% else %}Create Album{% endif %}</title>
+</head>
+<body>
+  <h1>{% if music %}Update Album {% else %}Create Album{% endif %}</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="title">Title:</label><br>
+    <input id="title" type="text" name="title" value="{{ music.title }}"><br><br>
+    <label for="artist">Artist:</label><br>
+    <input id="artist" type="text" name="artist" value="{{ music.artist }}"><br><br>
+    <label for="date">Release Date:</label><br>
+    <input id="date" type="date" name="date" value="{{ music.date }}"><br><br>
+    <label for="genre">Genre:</label><br>
+    <input id="genre" type="text" name="genre" value="{{ music.genre }}"><br><br>
+    <button type="submit">{% if music %}Update{% else %}Create{% endif %}</button>
+  </form>
+  <br>
+  {% if music %}
+    <button><a href="{{ music.get_detail_url }}">Back to Detail</a></button>
+  {% else %}
+    <button><a href="{% url 'music:list' %}">Back to List</a></button>
+  {% endif %}
+</body>
+</html>
